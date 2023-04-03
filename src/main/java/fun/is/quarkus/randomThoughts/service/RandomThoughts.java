@@ -1,6 +1,7 @@
 package fun.is.quarkus.randomThoughts.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -19,7 +20,9 @@ public class RandomThoughts implements RandomThoughtsApi{
 
     @Override
     @Transactional
-    public Response saveThought(RandomThoughtDto thought) {
+    public Response saveThought(RandomThoughtDto dto) {
+
+        RandomThoughtDto thought = new RandomThoughtDto(UUID.randomUUID(), dto.randomThought());
         try {
             mapper.dtoToEntity(thought).persist();
         } catch (Exception e) {
