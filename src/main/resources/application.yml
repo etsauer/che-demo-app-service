@@ -3,6 +3,13 @@ quarkus:
     name: RandomThoughts
   http:
     port: ${API_PORT}
+    cors:
+      ~: true
+      origins: ${CORS_ORIGINS}
+      methods: ${CORS_METHODS}
+      headers: "Content-Type, Accept, X-Requested-With, remember-me"
+      access-control-max-age: "3600"
+      access-control-allow-credentials: true
   log:
     level: "INFO"
     console:
